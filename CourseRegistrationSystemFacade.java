@@ -2,13 +2,8 @@ package coursesSystem;
 
 public class CourseRegistrationSystemFacade extends Subject
 {
-    private courseFactory courseFactory;
     private static CourseRegistrationSystemFacade instance;
     // Static method to get the singleton instance
-    public CourseRegistrationSystemFacade()
-    {
-        this.courseFactory = new courseFactory();
-    }
     public static CourseRegistrationSystemFacade getInstance()
     {
         if (instance == null)
@@ -39,25 +34,15 @@ public class CourseRegistrationSystemFacade extends Subject
     }
     public void signIn(User user)
     {
-        if(!observers.contains(user) && observers.size() < 100)
-        {
             addObserver(user);
-        }
     }
     public void signOut(User user)
     {
-        if(!observers.isEmpty() && observers.contains(user))
-        {
             removeObserver(user);
-        }
     }
     public void printNotifications(User user)
     {
-        System.out.println("\n" + user.getName() + " notifications:");
-        for(String notification : user.notifications)
-        {
-            System.out.println(notification);
-        }
+        user.printNotifications();
     }
     public void registerStudentToCourse(Student student, Course course)
     {
@@ -69,12 +54,12 @@ public class CourseRegistrationSystemFacade extends Subject
                 if (check)
                 {
                     student.getCourses().add(course);
-                    System.out.println(student.getName() + " Registered to course " + course.getCourseName());
+                    student.update("You registered to course " + course.getCourseName());
                 }
                 else
                 {
                     student.getCoursesToRegisterWhenAvailable().add(course);
-                    System.out.println(student.getName() + " The course " + course.getCourseName() + " is full and you will be notified when a place becomes available");
+                    student.update("The course " + course.getCourseName() + " is full and you will be notified when a place becomes available");
                 }
             }
         }
@@ -87,7 +72,7 @@ public class CourseRegistrationSystemFacade extends Subject
             {
                 course.cencelRegister();
                 student.getCourses().remove(course);
-                System.out.println(student.getName() + " Cancel the register to course " + course.getCourseName());
+                student.update("You cancel the register to course " + course.getCourseName());
             }
         }
     }

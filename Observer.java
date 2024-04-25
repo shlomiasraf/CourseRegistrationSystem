@@ -21,7 +21,7 @@ abstract class Subject
     }
     public void addObserver(Observer observer)
     {
-        if(!observers.contains(observer))
+        if(!observers.contains(observer) && observers.size() < 100)
         {
             observers.add(observer);
         }

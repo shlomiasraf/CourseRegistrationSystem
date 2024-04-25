@@ -58,15 +58,13 @@ class Course
 }
 class courseFactory
 {
-    private static Map<String, Course> courses = new HashMap<>();
+    private static Map<Integer, Course> courses = new HashMap<>();
     public static Course getCourse(String courseName, int courseID, int registerMax, String kind)
     {
-        String key = courseName + "," + courseID;
-        if (!courses.containsKey(key))
+        if (!courses.containsKey(courseID))
         { // if course doesn't exist in the map
-            courses.put(key, new Course(courseName, courseID, registerMax, kind)); // create new course and add it to the map
-            System.out.println("Course " + courseName + ": " + courseID + " is created");
+            courses.put(courseID, new Course(courseName, courseID, registerMax, kind)); // create new course and add it to the map
         }
-        return courses.get(key);
+        return courses.get(courseID);
     }
 }

@@ -29,6 +29,8 @@ public class Main
         ArielUniversity.registerStudentToCourse(Noam,LinearAlgebra);
         ArielUniversity.cencelRegisterToCourse(Afik,LinearAlgebra);
         ArielUniversity.notifyObservers("The registration system will not work on 14/8 from 12:00-14:00");
+        ArielUniversity.printNotifications(Shlomi);
+        ArielUniversity.printNotifications(Afik);
         ArielUniversity.printNotifications(Noam);
         ArielUniversity.signOut(Afik);
         //try to create Student with id that already exists with other details.
